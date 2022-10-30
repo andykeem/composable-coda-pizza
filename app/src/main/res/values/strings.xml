@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">CodaPizza App</string>
+    <string name="topping_placement_left">Left half</string>
+    <string name="topping_placement_right">Right half</string>
+    <string name="topping_placement_all">Whole pizza</string>
+    <string name="topping_placement_none">None</string>
+    <string name="topping_pepperoni">Pepperoni</string>
+    <string name="topping_sausage">Sausage</string>
+    <string name="topping_mushroom">Mushroom</string>
+    <string name="topping_bacon">Bacon</string>
+    <string name="topping_onion">Onion</string>
+    <string name="topping_extra_cheese">Extra Cheese</string>
+    <string name="topping_pepper">Pepper</string>
+    <string name="topping_chicken">Chicken</string>
+    <string name="topping_olive">Olive</string>
+    <string name="topping_spinach">Spinach</string>
+    <string name="topping_tomato_and_basil">Tomato and Basil</string>
+    <string name="topping_beef">Beef</string>
+    <string name="topping_ham">Ham</string>
+    <string name="topping_pesto">Pesto</string>
+    <string name="topping_spicy_pork">Spicy Pork</string>
+    <string name="topping_ham_and_pineapple">Ham and Pineapple</string>
+    <string name="place_order">Place Order (%1$s)</string>
+    <string name="topping_dialog_question">Where do you want %1$s on your pizza?</string>
+</resources>
