@@ -33,7 +33,6 @@ fun ToppingPlacementDialog(
     modifier: Modifier = Modifier
 ) {
     Dialog(onDismissRequest = onDismissRequest) {
-//        Box(modifier = modifier.background(color = Color.Red).size(64.dp))
         Card {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -51,7 +50,7 @@ fun ToppingPlacementDialog(
                     textAlign = TextAlign.Center,
                     modifier = Modifier.padding(8.dp)
                 )
-                
+
                 ToppingPlacement.values().toList().plus(null).onEach { placement ->
                     ToppingPlacementClickableText(
                         placement = placement,

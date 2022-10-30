@@ -10,11 +10,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Button
 import androidx.compose.material.Checkbox
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -43,7 +40,6 @@ private fun ToppingsList(
     modifier: Modifier = Modifier,
     onToppingChange: (pizza: Pizza) -> Unit
 ) {
-//    var showDialogState by rememberSaveable { mutableStateOf(false) }
     var selectedToppingState by rememberSaveable { mutableStateOf<Topping?>(null) }
     LazyColumn(modifier = modifier) {
         items(Topping.values()) { topping ->
@@ -58,26 +54,22 @@ private fun ToppingsList(
                         placement = pizza.toppings[topping]
                     )
                     onToppingChange(updatedPizza)
-//                    showDialogState = true
                     selectedToppingState = topping
                 }
             )
-//            if (showDialogState) { // && isOnPizza) {
+
             selectedToppingState?.let { selectedTopping ->
                 ToppingPlacementDialog(
                     onDismissRequest = {
                         selectedToppingState = null
-                    }, // showDialogState = false },
+                    },
                     topping = selectedTopping,
                     onPlacementClick = { selectedPlacement ->
-//                        toppingPlacement = it
                         val pizzaWithTopping = pizza.withTopping(selectedTopping, selectedPlacement)
                         onToppingChange(pizzaWithTopping)
-//                            showDialogState = false
                     }
                 )
             }
-//            }
         }
     }
 }
@@ -109,8 +101,7 @@ fun ToppingCell(
 @Composable
 private fun OrderButton(pizza: Pizza, modifier: Modifier = Modifier) {
     Button(onClick = { /*TODO*/ }, modifier = modifier.fillMaxWidth()) {
-//        val currencyFormatter = remember { NumberFormat.getCurrencyInstance() }
-        val currencyFormatter = NumberFormat.getCurrencyInstance()
+        val currencyFormatter = remember { NumberFormat.getCurrencyInstance() }
         Log.d(TAG, "currencyFormatter: $currencyFormatter")
         val price = currencyFormatter.format(pizza.price)
         Text(stringResource(R.string.place_order, price))
