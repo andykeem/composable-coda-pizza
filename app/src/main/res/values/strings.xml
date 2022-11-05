@@ -10,7 +10,7 @@
     <string name="topping_bacon">Bacon</string>
     <string name="topping_onion">Onion</string>
     <string name="topping_extra_cheese">Extra Cheese</string>
-    <string name="topping_pepper">Pepper</string>
+    <string name="topping_peppers">Peppers</string>
     <string name="topping_chicken">Chicken</string>
     <string name="topping_olive">Olive</string>
     <string name="topping_spinach">Spinach</string>
@@ -22,4 +22,8 @@
     <string name="topping_ham_and_pineapple">Ham and Pineapple</string>
     <string name="place_order">Place Order (%1$s)</string>
     <string name="topping_dialog_question">Where do you want %1$s on your pizza?</string>
+    <string name="topping_pineapple">Pineapple</string>
+    <string name="pizza_preview">Pizza preview</string>
+    <string name="topping_basil">Basil</string>
+    <string name="order_placed_toast">Order submitted!</string>
 </resources>

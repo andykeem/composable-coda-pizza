@@ -1,21 +1,23 @@
 package loc.example.codapizzaapp.ui
 
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Button
-import androidx.compose.material.Checkbox
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import loc.example.codapizzaapp.R
 import loc.example.codapizzaapp.model.Pizza
 import loc.example.codapizzaapp.model.Topping
@@ -28,9 +30,20 @@ private const val TAG = "PizzaBuilderScreen"
 @Composable
 fun PizzaBuilderScreen(modifier: Modifier = Modifier) {
     var pizza by rememberSaveable { mutableStateOf(Pizza()) }
-    Column(modifier = modifier) {
-        ToppingsList(pizza = pizza, modifier = modifier.weight(1f)) { pizza = it }
-        OrderButton(pizza = pizza, modifier = modifier)
+    Scaffold(
+        modifier = modifier,
+        topBar = { TopAppBar(title = { Text(stringResource(id = R.string.app_name)) }) },
+    ) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = modifier.padding(8.dp)
+        ) {
+            ToppingsList(
+                pizza = pizza, modifier = Modifier
+                    .weight(1f)
+            ) { pizza = it }
+            OrderButton(pizza)
+        }
     }
 }
 
@@ -42,6 +55,9 @@ private fun ToppingsList(
 ) {
     var selectedToppingState by rememberSaveable { mutableStateOf<Topping?>(null) }
     LazyColumn(modifier = modifier) {
+        item {
+            PizzaHeroImage(pizza = pizza, modifier = modifier)
+        }
         items(Topping.values()) { topping ->
             val isOnPizza = pizza.toppings.containsKey(topping)
             ToppingCell(
@@ -100,7 +116,10 @@ fun ToppingCell(
 
 @Composable
 private fun OrderButton(pizza: Pizza, modifier: Modifier = Modifier) {
-    Button(onClick = { /*TODO*/ }, modifier = modifier.fillMaxWidth()) {
+    val ctx = LocalContext.current
+    Button(onClick = {
+        Toast.makeText(ctx, R.string.order_placed_toast, Toast.LENGTH_LONG).show()
+    }, modifier = modifier.fillMaxWidth()) {
         val currencyFormatter = remember { NumberFormat.getCurrencyInstance() }
         Log.d(TAG, "currencyFormatter: $currencyFormatter")
         val price = currencyFormatter.format(pizza.price)
